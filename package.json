@@ -1,0 +1,11 @@
+{
+  "name": "secretlair-11ty-netlify",
+  "version": "1.0.0",
+  "description": "Secretlair blog using 11ty + netlify",
+  "main": "index.js",
+  "author": "Chuck Meyer",
+  "license": "MIT",
+  "devDependencies": {
+    "@11ty/eleventy": "^0.12.1"
+  }
+}
