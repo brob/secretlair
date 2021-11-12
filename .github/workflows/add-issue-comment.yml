@@ -19,4 +19,15 @@ jobs:
         with:
           issue-number: ${{ github.event.issue.number }}
           body: |
-            This issue is available for anyone to work on. **Make sure to reference this issue in your pull request.** :sparkles: Thank you for your contribution! :sparkles:
+            This issue is available for anyone to work on. **Make sure to reference this issue in your pull request.** :sparkles: Thank you for your
+            contribution! :sparkles:
+     - name: Add to index
+        uses: ./.github/actions/hello-world-action
+        with:
+          app_id: ${{ secrets.ALGOLIA_APP_ID }}
+          # You can store token in your project's 'Setting > Secrets' and reference the name here. Such as 
+          api_key: ${{ secrets.ALGOLIA_API_KEY }}
+          # The index name. 
+          index_name: secretlair-issues
+          # The index file path relative to repo root.
+          record: "{firstname: 'Jimmie', lastname: 'Barninger', objectID: 'myID1'}"
