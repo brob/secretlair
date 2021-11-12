@@ -21,6 +21,9 @@ jobs:
           body: |
             This issue is available for anyone to work on. **Make sure to reference this issue in your pull request.** :sparkles: Thank you for your
             contribution! :sparkles:
+      # This step checks out a copy of your repository.
+      - uses: actions/checkout@v2
+      # This step references the directory that contains the action.
       - name: Add to index
         uses: ./.github/actions/add-index-record
         with:
