@@ -4,6 +4,7 @@ const algoliasearch = require('algoliasearch');
 
 async function run() {
   try {
+    core.info('Trying to write to index')
     const inputs = {
       appId: core.getInput('app_id'),
       apiKey: core.getInput('api_key'),
