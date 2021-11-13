@@ -4371,7 +4371,7 @@ async function run() {
     const client = algoliasearch(inputs.appId, inputs.apiKey);
     const index = client.initIndex(inputs.indexName);
     
-    index.saveObject(inputs.record, {'autoGenerateObjectIDIfNotExist': true})
+    index.saveObject(JSON.parse(inputs.record), {'autoGenerateObjectIDIfNotExist': true})
       .then(({ objectID }) => {
         core.info(objectID);
       })
