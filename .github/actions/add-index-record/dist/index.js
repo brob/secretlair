@@ -4359,7 +4359,7 @@ const algoliasearch = __nccwpck_require__(229);
 
 async function run() {
   try {
-    core.info('Writing record to index')
+    core.info(`Writing record to index ${inputs.indexName}`)
     const inputs = {
       appId: core.getInput('app_id'),
       apiKey: core.getInput('api_key'),
@@ -4378,7 +4378,7 @@ async function run() {
 
     index.saveObject(JSON.parse(inputs.record), {'autoGenerateObjectIDIfNotExist': true})
       .then(({ objectID }) => {
-        `Created record in index ${input.indexName} with objectID ${objectID}.`
+        `Created record in index ${inputs.indexName} with objectID ${objectID}.`
       })
       .catch((err) => {
         core.error(err);
