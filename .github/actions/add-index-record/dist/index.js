@@ -4359,7 +4359,6 @@ const algoliasearch = __nccwpck_require__(229);
 
 async function run() {
   try {
-    core.info(`Writing record to index ${inputs.indexName}`)
     const inputs = {
       appId: core.getInput('app_id'),
       apiKey: core.getInput('api_key'),
@@ -4373,6 +4372,7 @@ async function run() {
       return;
     }
 
+    core.info(`Writing record to index ${inputs.indexName}`)
     const client = algoliasearch(inputs.appId, inputs.apiKey);
     const index = client.initIndex(inputs.indexName);
 
