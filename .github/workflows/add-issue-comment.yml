@@ -34,4 +34,4 @@ jobs:
           index_name: secretlair-issues
           # The index file path relative to repo root.
           record: |
-            {firstname: 'Jimmie', lastname: 'Barninger', objectID: 'myID1'}
+            {"firstname": "Jimmie", "lastname": "Barninger", "objectID": "myID1"}
