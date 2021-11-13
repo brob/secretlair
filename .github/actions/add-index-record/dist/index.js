@@ -4359,7 +4359,7 @@ const algoliasearch = __nccwpck_require__(229);
 
 async function run() {
   try {
-    core.info('Trying to write to index')
+    core.info('Writing record to index')
     const inputs = {
       appId: core.getInput('app_id'),
       apiKey: core.getInput('api_key'),
@@ -4368,16 +4368,22 @@ async function run() {
     };
     core.debug(`Inputs: ${inspect(inputs)}`);
 
+    if (!inputs.appId && !inputs.apiKey && !inputs.indexName) {
+      core.setFailed("Missing one or more of Algolia app id, API key, or index name.");
+      return;
+    }
+
     const client = algoliasearch(inputs.appId, inputs.apiKey);
     const index = client.initIndex(inputs.indexName);
-    
+
     index.saveObject(JSON.parse(inputs.record), {'autoGenerateObjectIDIfNotExist': true})
       .then(({ objectID }) => {
-        core.info(objectID);
+        `Created record in index ${input.indexName} with objectID ${objectID}.`
       })
       .catch((err) => {
         core.error(err);
       });
+
   } catch (error) {
     core.debug(inspect(error));
     core.setFailed(error.message);
