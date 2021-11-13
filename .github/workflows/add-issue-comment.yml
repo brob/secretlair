@@ -35,4 +35,4 @@ jobs:
           # The index file path relative to repo root.
           record: |
             {"title": "${{ github.event.issue.title }}", "url": "${{ github.event.issue.html_url }}", "labels": "${{ github.event.issue.labels }}",
-            "created_date": "${{ github.event.issue.created_date }}", "objectID": "${{ github.event.issue.number }}"}
+            "created_date": "${{ github.event.created_at }}", "objectID": "${{ github.event.issue.number }}"}
