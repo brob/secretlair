@@ -3,7 +3,7 @@
 # separate terms of service, privacy policy, and support
 # documentation.
 
-name: Add comment
+name: New issue
 on:
   issues:
     types:
@@ -21,18 +21,16 @@ jobs:
           body: |
             This issue is available for anyone to work on. **Make sure to reference this issue in your pull request.** :sparkles: Thank you for your
             contribution! :sparkles:
-      # This step checks out a copy of your repository.
+  add-index-record:
+    runs-on: ubuntu-latest
+    steps:
       - uses: actions/checkout@v2
-      # This step references the directory that contains the action.
       - name: Add to index
         uses: ./.github/actions/add-index-record
         with:
           app_id: ${{ secrets.ALGOLIA_APP_ID }}
-          # You can store token in your project's 'Setting > Secrets' and reference the name here. Such as 
           api_key: ${{ secrets.ALGOLIA_API_KEY }}
-          # The index name. 
           index_name: secretlair-issues
-          # The index file path relative to repo root.
           record: |
             {"title": "${{ github.event.issue.title }}", "url": "${{ github.event.issue.html_url }}", "labels": "${{ github.event.issue.labels }}",
              "objectID": "${{ github.event.issue.number }}"}
