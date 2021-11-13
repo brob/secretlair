@@ -1,9 +1,29 @@
 const core = require('@actions/core');
 const algoliasearch = require('algoliasearch');
 
-const client = algoliasearch(core.getInput('app_id'), core.getInput('api_key'));
-const index = client.initIndex(core.getInput('index_name'));
+async function run() {
+  try {
+    const inputs = {
+      appId: core.getInput('app_id'),
+      apiKey: core.getInput('api_key'),
+      indexName: core.getInput('index_name'),
+      record: core.getInput('record'),
+    };
+    core.debug(`Inputs: ${inspect(inputs)}`);
 
-index.saveObject(core.getInput('record')).then(({ objectID }) => {
-  core.info(objectID);
-});
+    const client = algoliasearch(inputs.appId, inputs.apiKey);
+    const index = client.initIndex(inputs.indexName);
+    
+    index.saveObject(inputs.record).then(({ objectID }) => {
+      core.info(objectID);
+    });
+  } catch (error) {
+    core.debug(inspect(error));
+    core.setFailed(error.message);
+    if (error.message == 'Resource not accessible by integration') {
+      core.error(`See this action's readme for details about this error`);
+    }
+  }
+}
+
+run();
