@@ -4353,6 +4353,7 @@ module.exports = require("util");
 var __webpack_exports__ = {};
 // This entry need to be wrapped in an IIFE because it need to be isolated against other modules in the chunk.
 (() => {
+const { inspect } = __nccwpck_require__(669);
 const core = __nccwpck_require__(727);
 const algoliasearch = __nccwpck_require__(229);
 

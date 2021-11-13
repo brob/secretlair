@@ -1,3 +1,4 @@
+const { inspect } = require("util");
 const core = require('@actions/core');
 const algoliasearch = require('algoliasearch');
 
