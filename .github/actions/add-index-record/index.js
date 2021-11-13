@@ -16,9 +16,13 @@ async function run() {
     const client = algoliasearch(inputs.appId, inputs.apiKey);
     const index = client.initIndex(inputs.indexName);
     
-    index.saveObject(inputs.record).then(({ objectID }) => {
-      core.info(objectID);
-    });
+    index.saveObject(inputs.record)
+      .then(({ objectID }) => {
+        core.info(objectID);
+      })
+      .catch((err) => {
+        core.error(err);
+      });
   } catch (error) {
     core.debug(inspect(error));
     core.setFailed(error.message);
